@@ -1,0 +1,9 @@
+#ignore the following folders
+Features/
+Resultados/
+ResultadosMetricas/
+Data/
+NormalizedVisualFeatures/
+VisualFeatures/
+csvtraining/
+csv/
