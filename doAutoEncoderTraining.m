@@ -1,0 +1,29 @@
+function aeOutput = doAutoEncoderTraining(input)
+
+%AutoEncoders Parameters
+hiddenSize = 50;
+hiddenSize2=20;
+
+AE1 = trainAutoencoder(input,hiddenSize,...
+    'L2WeightRegularization',0.001,...
+    'SparsityRegularization',4,...
+    'SparsityProportion',0.05,...
+    'DecoderTransferFunction','purelin','ShowProgressWindow',false);
+
+f1 = encode(AE1,input);
+
+AE2 = trainAutoencoder(f1,hiddenSize2,...
+    'L2WeightRegularization',0.001,...
+    'SparsityRegularization',4,...
+    'SparsityProportion',0.05,...
+    'DecoderTransferFunction','purelin',...
+    'ScaleData',false,'ShowProgressWindow',false);
+
+f2 = encode(AE2,f1);
+
+aeOutput.AE1 = AE1;
+aeOutput.f1 = f1;
+aeOutput.AE2 = AE2;
+aeOutput.f2 = f2;
+
+end
