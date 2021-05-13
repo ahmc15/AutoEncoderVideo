@@ -2,7 +2,9 @@ import os
 import csv
 import random
 import itertools
-random.seed(10)
+
+num_seed = 10
+random.seed(num_seed)
 
 def unpack_list(one_list):
     one_list = [i for item in one_list for i in item]
@@ -13,6 +15,8 @@ with open('netflixDataset.csv', newline='') as csvfile:
     csvlistanome = csv.reader(csvfile, delimiter=';')
     for count, row in enumerate(csvlistanome):
         lista.append(row)
+
+
 
 cabecalho = lista[0]
 corpo = lista[1:]
@@ -30,12 +34,12 @@ for i in range(0,15,3):
     test = unpack_list(test)
     train = unpack_list(train)
 
-    with open('Netflix_test'+str(contador)+'.csv', 'w', newline='') as csvfile:
+    with open('seed'+str(num_seed)+'Netflix_test'+str(contador)+'.csv', 'w', newline='') as csvfile:
         csv_test = csv.writer(csvfile, delimiter=';')
         csv_test.writerow(cabecalho)
         for linha, elemento in enumerate(test):
             csv_test.writerow(test[linha])
-    with open('Netflix_train'+str(contador)+'.csv', 'w', newline='') as csvfile:
+    with open('seed'+str(num_seed)+'Netflix_train'+str(contador)+'.csv', 'w', newline='') as csvfile:
         csv_train = csv.writer(csvfile, delimiter=';')
         csv_train.writerow(cabecalho)
         for linha, elemento in enumerate(train):
